@@ -29,7 +29,7 @@ jobs:
  
       # 6️⃣ Build Angular App
       - name: Build Angular
-        run: ng build --configuration production
+        run: npx ng build --configuration production
 
       # 7️⃣ Upload build artifact (optional)
       - name: Upload Build
