@@ -20,7 +20,7 @@ export class Signup {
       confirmPassword: ['', Validators.required]
     });
   }
-
+  
   onSubmit() {
     if (this.signupForm.valid) {
       this.auth.registerUser(this.signupForm.value).subscribe({

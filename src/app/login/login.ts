@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-
+import { RouterModule , Router} from '@angular/router';
+import { Auth } from '../services/auth';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
 export class Login {
       loginForm: FormGroup;
 
-        constructor(private fb: FormBuilder) {
+        constructor(private fb: FormBuilder, private router: Router, private auth: Auth) {
           this.loginForm = this.fb.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required]
@@ -22,8 +22,17 @@ export class Login {
 
         onSubmit() {
           if (this.loginForm.valid) {
-            console.log(this.loginForm.value);
-            alert("Login Successful!");
+               this.auth.loginUser(this.loginForm.value).subscribe({
+                next: (response) => {
+                  console.log(response); 
+                  this.auth.saveToken(response.token);
+                  this.router.navigate(['/dashboard']);
+                },
+                error: (err) => {
+                  console.error(err.error.message);
+                  alert("Login Failed! "+err.error.message);
+                }
+              });
           }
         }
 }

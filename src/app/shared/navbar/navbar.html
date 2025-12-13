@@ -1,0 +1,20 @@
+    <!-- <nav *ngIf="this.auth.isLoggedIn()">
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/profile">Profile</a>
+      <button (click)="logout()">Logout</button>
+    </nav>
+    <nav *ngIf="!this.auth.isLoggedIn()">
+      <a routerLink="/signup">Sign up</a>    
+    </nav> -->
+
+
+<div class="sidebar">
+  <h2 class="logo">MyApp</h2>
+
+  <ul class="menu">
+    <li><a routerLink="/dashboard">Dashboard</a></li>
+    <li><a routerLink="/profile">Profile</a></li>
+    <li><a routerLink="/settings">Settings</a></li>
+    <li><a (click)="logout()">Logout</a></li>
+  </ul>
+</div>
