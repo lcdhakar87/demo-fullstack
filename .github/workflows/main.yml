@@ -1,0 +1,47 @@
+name: Angular 21 CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build Angular App
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      # 2️⃣ Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'   # Angular 21 compatible
+          cache: 'npm'
+
+      # 3️⃣ Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # 4️⃣ Run Lint (optional)
+      - name: Lint Code
+        run: npm run lint
+
+      # 5️⃣ Run Tests (optional)
+      - name: Run Tests
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+
+      # 6️⃣ Build Angular App
+      - name: Build Angular
+        run: npm run build -- --prod
+
+      # 7️⃣ Upload build artifact (optional)
+      - name: Upload Build
+        uses: actions/upload-artifact@v3
+        with:
+          name: angular-build
+          path: dist/
