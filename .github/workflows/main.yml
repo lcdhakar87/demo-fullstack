@@ -14,11 +14,11 @@ jobs:
     steps:
       # 1️⃣ Checkout repository
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 2️⃣ Setup Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20'   # Angular 21 compatible
           cache: 'npm'
@@ -32,8 +32,14 @@ jobs:
         run: npx ng build --configuration production
 
       # 7️⃣ Upload build artifact (optional)
-      - name: Upload Build
+      - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: angular-build
           path: dist/
+          
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
