@@ -29,7 +29,7 @@ jobs:
  
       # 6️⃣ Build Angular App
       - name: Build Angular
-        run: npm run build -- --prod
+        run: npm run build -- --main
 
       # 7️⃣ Upload build artifact (optional)
       - name: Upload Build
