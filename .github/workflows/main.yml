@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Angular to GitHub Pages
 
 on:
   push:
@@ -12,18 +12,27 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js 20 (REQUIRED)
+        uses: actions/setup-node@v4
         with:
-          node-version: 21
+          node-version: '20.19.0'
 
-      - run: npm install
+      - name: Verify Node version
+        run: node -v
 
-      - run: npm run build -- --base-href=/demo-fullstack/
+      - name: Install dependencies
+        run: npm install
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Build Angular app
+        run: npm run build -- --base-href=/demo-fullstack/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist/demo-fullstack
 
@@ -32,5 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
+
     steps:
-      - uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
