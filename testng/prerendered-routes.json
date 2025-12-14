@@ -1,8 +1,0 @@
-{
-  "routes": {
-    "/demo-fullstack": {},
-    "/demo-fullstack/dashboard": {},
-    "/demo-fullstack/login": {},
-    "/demo-fullstack/signup": {}
-  }
-}
