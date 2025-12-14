@@ -63,10 +63,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "testng:build:production"
+              "buildTarget": "demo-fullstack:build:production"
             },
             "development": {
-              "buildTarget": "testng:build:development"
+              "buildTarget": "demo-fullstack:build:development"
             }
           },
           "defaultConfiguration": "development"
