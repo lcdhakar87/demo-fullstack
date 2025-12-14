@@ -30,7 +30,10 @@ jobs:
 
       - name: Build Angular app
         run: npm run build -- --base-href=/demo-fullstack/
-
+      
+      - name: Debug dist
+        run: ls -R dist
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
