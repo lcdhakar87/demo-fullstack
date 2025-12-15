@@ -11,7 +11,7 @@
 <div class="sidebar">
   <h2 class="logo">MyApp</h2>
 
-  <ul class="menu">
+  <ul *ngIf="this.auth.isLoggedIn();" class="menu">
     <li><a routerLink="/dashboard">Dashboard</a></li>
     <li><a routerLink="/profile">Profile</a></li>
     <li><a routerLink="/settings">Settings</a></li>
